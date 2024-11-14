@@ -1,0 +1,22 @@
+---
+
+#######################################
+### ENABLE VARS
+#######################################
+
+### ATIX
+
+# foreman_enable_atix: false
+
+# foreman_enable_atix_debian: false
+# foreman_enable_atix_debian11: "{{ foreman_enable_atix_debian | bool }}"
+# foreman_enable_atix_debian12: "{{ foreman_enable_atix_debian | bool }}"
+
+# foreman_enable_atix_ubuntu: false
+# foreman_enable_atix_ubuntu2004: "{{ foreman_enable_atix_ubuntu | bool }}"
+# foreman_enable_atix_ubuntu2204: "{{ foreman_enable_atix_ubuntu | bool }}"
+# foreman_enable_atix_ubuntu2404: "{{ foreman_enable_atix_ubuntu | bool }}"
+
+# foreman_enable_atix_sles: false
+# foreman_enable_atix_sles12: "{{ foreman_enable_atix_sles | bool }}"
+# foreman_enable_atix_sles15: "{{ foreman_enable_atix_sles | bool }}"

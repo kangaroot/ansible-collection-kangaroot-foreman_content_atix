@@ -1,0 +1,47 @@
+---
+
+#######################################
+### PRODUCT DEFAULTS
+#######################################
+
+# foreman_products_defaults_download_policy: on_demand
+# foreman_products_defaults_mirroring_policy: mirror_complete
+# foreman_products_defaults_verify_ssl_on_sync: false
+# foreman_products_defaults_http_proxy_policy: global_default_http_proxy
+# foreman_products_defaults_unprotected: false
+
+### ATIX
+
+# foreman_products_defaults_download_policy_atix: "{{ foreman_products_defaults_download_policy }}"
+# foreman_products_defaults_mirroring_policy_atix: mirror_content_only
+# foreman_products_defaults_verify_ssl_on_sync_atix: "{{ foreman_products_defaults_verify_ssl_on_sync | bool }}"
+# foreman_products_defaults_http_proxy_policy_atix: "{{ foreman_products_defaults_http_proxy_policy }}"
+# foreman_products_defaults_unprotected_atix: "{{ foreman_products_defaults_unprotected | bool }}"
+# foreman_products_defaults_deb_components_atix: main
+# foreman_products_defaults_deb_architectures_atix: "{{ foreman_products_defaults_deb_architectures }}"
+
+# foreman_products_defaults_download_policy_atix_debian: "{{ foreman_products_defaults_download_policy_atix }}"
+# foreman_products_defaults_download_policy_atix_ubuntu: "{{ foreman_products_defaults_download_policy_atix }}"
+# foreman_products_defaults_download_policy_atix_sles: "{{ foreman_products_defaults_download_policy_atix }}"
+
+# foreman_products_defaults_mirroring_policy_atix_debian: "{{ foreman_products_defaults_mirroring_policy_atix }}"
+# foreman_products_defaults_mirroring_policy_atix_ubuntu: "{{ foreman_products_defaults_mirroring_policy_atix }}"
+# foreman_products_defaults_mirroring_policy_atix_sles: "{{ foreman_products_defaults_mirroring_policy_atix }}"
+
+# foreman_products_defaults_verify_ssl_on_sync_atix_debian: "{{ foreman_products_defaults_verify_ssl_on_sync_atix | bool }}"
+# foreman_products_defaults_verify_ssl_on_sync_atix_ubuntu: "{{ foreman_products_defaults_verify_ssl_on_sync_atix | bool }}"
+# foreman_products_defaults_verify_ssl_on_sync_atix_sles: "{{ foreman_products_defaults_verify_ssl_on_sync_atix | bool }}"
+
+# foreman_products_defaults_http_proxy_policy_atix_debian: "{{ foreman_products_defaults_http_proxy_policy_atix }}"
+# foreman_products_defaults_http_proxy_policy_atix_ubuntu: "{{ foreman_products_defaults_http_proxy_policy_atix }}"
+# foreman_products_defaults_http_proxy_policy_atix_sles: "{{ foreman_products_defaults_http_proxy_policy_atix }}"
+
+# foreman_products_defaults_unprotected_atix_debian: "{{ foreman_products_defaults_unprotected_atix | bool }}"
+# foreman_products_defaults_unprotected_atix_ubuntu: "{{ foreman_products_defaults_unprotected_atix | bool }}"
+# foreman_products_defaults_unprotected_atix_sles: "{{ foreman_products_defaults_unprotected_atix | bool }}"
+
+# foreman_products_defaults_deb_components_atix_debian: "{{ foreman_products_defaults_deb_components_atix }}"
+# foreman_products_defaults_deb_components_atix_ubuntu: "{{ foreman_products_defaults_deb_components_atix }}"
+
+# foreman_products_defaults_deb_architectures_atix_debian: "{{ foreman_products_defaults_deb_architectures_atix }}"
+# foreman_products_defaults_deb_architectures_atix_ubuntu: "{{ foreman_products_defaults_deb_architectures_atix }}"

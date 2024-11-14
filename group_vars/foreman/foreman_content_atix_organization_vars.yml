@@ -1,0 +1,22 @@
+---
+
+#######################################
+### ORGANIZATION VARS
+#######################################
+
+### ATIX
+
+# foreman_organization_atix: "{{ foreman_organization }}"
+
+# foreman_organization_atix_debian: "{{ foreman_organization_atix }}"
+# foreman_organization_atix_debian11: "{{ foreman_organization_atix_debian }}"
+# foreman_organization_atix_debian12: "{{ foreman_organization_atix_debian }}"
+
+# foreman_organization_atix_ubuntu: "{{ foreman_organization_atix }}"
+# foreman_organization_atix_ubuntu2004: "{{ foreman_organization_atix_ubuntu }}"
+# foreman_organization_atix_ubuntu2204: "{{ foreman_organization_atix_ubuntu }}"
+# foreman_organization_atix_ubuntu2404: "{{ foreman_organization_atix_ubuntu }}"
+
+# foreman_organization_atix_sles: "{{ foreman_organization_atix }}"
+# foreman_organization_atix_sles12: "{{ foreman_organization_atix_sles }}"
+# foreman_organization_atix_sles15: "{{ foreman_organization_atix_sles }}"

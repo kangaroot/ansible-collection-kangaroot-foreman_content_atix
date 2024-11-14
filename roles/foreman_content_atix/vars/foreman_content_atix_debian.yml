@@ -1,0 +1,110 @@
+---
+# noqa: var-naming[no-role-prefix]
+
+foreman_products_defaults: &foreman_products_defaults
+  content_type: deb
+  gpg_key: "{{ foreman_cred_name_prefix | default('') }}ATIX-GPG-KEY"
+  download_policy: "{{ foreman_products_defaults_download_policy_atix }}"
+  # mirror_on_sync: True
+  # mirroring_policy: "additive"
+  # mirroring_policy: "mirror_content_only"
+  mirroring_policy: "{{ foreman_products_defaults_mirroring_policy_atix }}"
+  verify_ssl_on_sync: "{{ foreman_products_defaults_verify_ssl_on_sync_atix | bool }}"
+  # http_proxy: Default Proxy
+  http_proxy_policy: "{{ foreman_products_defaults_http_proxy_policy_atix }}"
+  unprotected: "{{ foreman_products_defaults_unprotected_atix | bool }}"
+  deb_releases: stable
+  deb_components: "{{ foreman_products_defaults_deb_components_atix_debian }}"
+  deb_architectures: "{{ foreman_products_defaults_deb_architectures_atix_debian }}"
+
+foreman_products_defaults_debian: &foreman_products_defaults_debian
+  <<: *foreman_products_defaults
+  download_policy: "{{ foreman_products_defaults_download_policy_atix_debian }}"
+  mirroring_policy: "{{ foreman_products_defaults_mirroring_policy_atix_debian }}"
+  verify_ssl_on_sync: "{{ foreman_products_defaults_verify_ssl_on_sync_atix_debian | bool }}"
+  http_proxy_policy: "{{ foreman_products_defaults_http_proxy_policy_atix_debian }}"
+  unprotected: "{{ foreman_products_defaults_unprotected_atix_debian | bool }}"
+
+
+foreman_products_atix_debian11:
+  - name: "{{ foreman_product_name_prefix | default('') }}ATIX"
+    label: "{{ foreman_product_label_prefix | default('') }}ATIX"
+    organization: "{{ foreman_organization_atix_debian11 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}ATIX Subscription Manager for Debian 11 (bullseye)"
+        label: "{{ foreman_repo_label_prefix | default('') }}atix-debian11"
+        <<: *foreman_products_defaults_debian
+        url: "{{ foreman_repo_baseurl_atix_debian11 }}/Debian11/"
+        organization: "{{ foreman_organization_atix_debian11 }}"
+
+foreman_products_atix_debian12:
+  - name: "{{ foreman_product_name_prefix | default('') }}ATIX"
+    label: "{{ foreman_product_label_prefix | default('') }}ATIX"
+    organization: "{{ foreman_organization_atix_debian12 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}ATIX Subscription Manager for Debian 12 (Bookworm)"
+        label: "{{ foreman_repo_label_prefix | default('') }}atix-debian12"
+        <<: *foreman_products_defaults_debian
+        url: "{{ foreman_repo_baseurl_atix_debian12 }}/Debian12/"
+        organization: "{{ foreman_organization_atix_debian12 }}"
+
+
+foreman_content_views_atix_debian11:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}atix_debian11"
+    organization: "{{ foreman_organization_atix_debian11 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}ATIX Subscription Manager for Debian 11 (bullseye)"
+        product: "{{ foreman_product_name_prefix | default('') }}ATIX"
+    allow_promote: "{{ foreman_cv_allow_promote_atix_debian11 }}"
+
+foreman_content_views_atix_debian12:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}atix_debian12"
+    organization: "{{ foreman_organization_atix_debian12 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}ATIX Subscription Manager for Debian 12 (Bookworm)"
+        product: "{{ foreman_product_name_prefix | default('') }}ATIX"
+    allow_promote: "{{ foreman_cv_allow_promote_atix_debian12 }}"
+
+
+foreman_content_credentials_atix_debian_main: []
+foreman_content_credentials_atix_debian: "{{ ( foreman_content_credentials_atix_debian_main | default([]) if foreman_enable_atix_debian | bool else [] ) |
+  union( foreman_content_credentials_atix_debian11 | default([]) if foreman_enable_atix_debian11 | bool else [] ) |
+  union( foreman_content_credentials_atix_debian12 | default([]) if foreman_enable_atix_debian12 | bool else [] )
+  }}"
+
+foreman_products_atix_debian_main: []
+foreman_products_atix_debian: "{{ ( foreman_products_atix_debian_main | default([]) if foreman_enable_atix_debian | bool else [] ) |
+  union( foreman_products_atix_debian11 | default([]) if foreman_enable_atix_debian11 | bool else [] ) |
+  union( foreman_products_atix_debian12 | default([]) if foreman_enable_atix_debian12 | bool else [] )
+  }}"
+
+foreman_content_views_atix_debian_main: []
+foreman_content_views_atix_debian: "{{ ( foreman_content_views_atix_debian_main | default([]) if foreman_enable_atix_debian | bool else [] ) |
+  union( foreman_content_views_atix_debian11 | default([]) if foreman_enable_atix_debian11 | bool else [] ) |
+  union( foreman_content_views_atix_debian12 | default([]) if foreman_enable_atix_debian12 | bool else [] )
+  }}"
+
+foreman_operatingsystems_atix_debian_main: []
+foreman_operatingsystems_atix_debian: "{{ ( foreman_operatingsystems_atix_debian_main | default([]) if foreman_enable_atix_debian | bool else [] ) |
+  union( foreman_operatingsystems_atix_debian11 | default([]) if foreman_enable_atix_debian11 | bool else [] ) |
+  union( foreman_operatingsystems_atix_debian12 | default([]) if foreman_enable_atix_debian12 | bool else [] )
+  }}"
+
+foreman_installation_media_atix_debian_main: []
+foreman_installation_media_atix_debian: "{{ ( foreman_installation_media_atix_debian_main | default([]) if foreman_enable_atix_debian | bool else [] ) |
+  union( foreman_installation_media_atix_debian11 | default([]) if foreman_enable_atix_debian11 | bool else [] ) |
+  union( foreman_installation_media_atix_debian12 | default([]) if foreman_enable_atix_debian12 | bool else [] )
+  }}"
+
+foreman_activation_keys_atix_debian_main: []
+foreman_activation_keys_atix_debian: "{{ ( foreman_activation_keys_atix_debian_main | default([]) if foreman_enable_atix_debian | bool else [] ) |
+  union( foreman_installation_media_atix_debian11 | default([]) if foreman_enable_atix_debian11 | bool else [] ) |
+  union( foreman_installation_media_atix_debian12 | default([]) if foreman_enable_atix_debian12 | bool else [] )
+  }}"
+
+foreman_sync_plan_products_atix_debian_main: []
+foreman_sync_plan_products_atix_debian: "{{ ( foreman_sync_plan_products_atix_debian_main | default([]) if foreman_enable_atix_debian | bool else [] ) |
+  union( foreman_installation_media_atix_debian11 | default([]) if foreman_enable_atix_debian11 | bool else [] ) |
+  union( foreman_installation_media_atix_debian12 | default([]) if foreman_enable_atix_debian12 | bool else [] )
+  }}"
+

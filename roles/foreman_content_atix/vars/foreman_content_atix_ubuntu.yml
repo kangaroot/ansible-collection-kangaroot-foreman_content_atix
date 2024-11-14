@@ -1,0 +1,136 @@
+---
+# noqa: var-naming[no-role-prefix]
+
+foreman_products_defaults: &foreman_products_defaults
+  content_type: deb
+  gpg_key: "{{ foreman_cred_name_prefix | default('') }}ATIX-GPG-KEY"
+  download_policy: "{{ foreman_products_defaults_download_policy_atix }}"
+  # mirror_on_sync: True
+  # mirroring_policy: "additive"
+  # mirroring_policy: "mirror_content_only"
+  mirroring_policy: "{{ foreman_products_defaults_mirroring_policy_atix }}"
+  verify_ssl_on_sync: "{{ foreman_products_defaults_verify_ssl_on_sync_atix | bool }}"
+  # http_proxy: Default Proxy
+  http_proxy_policy: "{{ foreman_products_defaults_http_proxy_policy_atix }}"
+  unprotected: "{{ foreman_products_defaults_unprotected_atix | bool }}"
+  deb_releases: stable
+  deb_components: "{{ foreman_products_defaults_deb_components_atix_ubuntu }}"
+  deb_architectures: "{{ foreman_products_defaults_deb_architectures_atix_ubuntu }}"
+
+foreman_products_defaults_ubuntu: &foreman_products_defaults_ubuntu
+  <<: *foreman_products_defaults
+  download_policy: "{{ foreman_products_defaults_download_policy_atix_ubuntu }}"
+  mirroring_policy: "{{ foreman_products_defaults_mirroring_policy_atix_ubuntu }}"
+  verify_ssl_on_sync: "{{ foreman_products_defaults_verify_ssl_on_sync_atix_ubuntu | bool }}"
+  http_proxy_policy: "{{ foreman_products_defaults_http_proxy_policy_atix_ubuntu }}"
+  unprotected: "{{ foreman_products_defaults_unprotected_atix_ubuntu | bool }}"
+
+
+foreman_products_atix_ubuntu2004:
+  - name: "{{ foreman_product_name_prefix | default('') }}ATIX"
+    label: "{{ foreman_product_label_prefix | default('') }}ATIX"
+    organization: "{{ foreman_organization_atix_ubuntu2004 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}ATIX Subscription Manager for Ubuntu 20.04 (Focal Fossa)"
+        label: "{{ foreman_repo_label_prefix | default('') }}atix-ubuntu2004"
+        <<: *foreman_products_defaults_ubuntu
+        url: "{{ foreman_repo_baseurl_atix_ubuntu2004 }}/Ubuntu20LTS/"
+        organization: "{{ foreman_organization_atix_ubuntu2004 }}"
+
+foreman_products_atix_ubuntu2204:
+  - name: "{{ foreman_product_name_prefix | default('') }}ATIX"
+    label: "{{ foreman_product_label_prefix | default('') }}ATIX"
+    organization: "{{ foreman_organization_atix_ubuntu2204 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}ATIX Subscription Manager for Ubuntu 22.04 (Jammy Jellyfish)"
+        label: "{{ foreman_repo_label_prefix | default('') }}atix-ubuntu2204"
+        <<: *foreman_products_defaults_ubuntu
+        url: "{{ foreman_repo_baseurl_atix_ubuntu2204 }}/Ubuntu22LTS/"
+        organization: "{{ foreman_organization_atix_ubuntu2204 }}"
+
+foreman_products_atix_ubuntu2404:
+  - name: "{{ foreman_product_name_prefix | default('') }}ATIX"
+    label: "{{ foreman_product_label_prefix | default('') }}ATIX"
+    organization: "{{ foreman_organization_atix_ubuntu2404 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}ATIX Subscription Manager for Ubuntu 24.04 (Noble Numbat)"
+        label: "{{ foreman_repo_label_prefix | default('') }}atix-ubuntu2404"
+        <<: *foreman_products_defaults_ubuntu
+        url: "{{ foreman_repo_baseurl_atix_ubuntu2404 }}/Ubuntu24LTS/"
+        organization: "{{ foreman_organization_atix_ubuntu2404 }}"
+
+
+foreman_content_views_atix_ubuntu2004:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}atix_ubuntu2004"
+    organization: "{{ foreman_organization_atix_ubuntu2004 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}ATIX Subscription Manager for Ubuntu 20.04 (Focal Fossa)"
+        product: "{{ foreman_product_name_prefix | default('') }}ATIX"
+    allow_promote: "{{ foreman_cv_allow_promote_atix_ubuntu2004 }}"
+
+foreman_content_views_atix_ubuntu2204:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}atix_ubuntu2204"
+    organization: "{{ foreman_organization_atix_ubuntu2204 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}ATIX Subscription Manager for Ubuntu 22.04 (Jammy Jellyfish)"
+        product: "{{ foreman_product_name_prefix | default('') }}ATIX"
+    allow_promote: "{{ foreman_cv_allow_promote_atix_ubuntu2204 }}"
+
+foreman_content_views_atix_ubuntu2404:
+  - name: "{{ foreman_cv_prefix | default('cv_') }}{{ foreman_cv_name_prefix | default('') }}atix_ubuntu2404"
+    organization: "{{ foreman_organization_atix_ubuntu2404 }}"
+    repositories:
+      - name: "{{ foreman_repo_name_prefix | default('') }}ATIX Subscription Manager for Ubuntu 24.04 (Noble Numbat)"
+        product: "{{ foreman_product_name_prefix | default('') }}ATIX"
+    allow_promote: "{{ foreman_cv_allow_promote_atix_ubuntu2404 }}"
+
+
+foreman_content_credentials_atix_ubuntu_main: []
+foreman_content_credentials_atix_ubuntu: "{{ ( foreman_content_credentials_atix_ubuntu_main | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
+  union( foreman_content_credentials_atix_ubuntu2004 | default([]) if foreman_enable_atix_ubuntu2004 | bool else [] ) |
+  union( foreman_content_credentials_atix_ubuntu2204 | default([]) if foreman_enable_atix_ubuntu2204 | bool else [] ) |
+  union( foreman_content_credentials_atix_ubuntu2404 | default([]) if foreman_enable_atix_ubuntu2404 | bool else [] )
+  }}"
+
+foreman_products_atix_ubuntu_main: []
+foreman_products_atix_ubuntu: "{{ ( foreman_products_atix_ubuntu_main | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
+  union( foreman_products_atix_ubuntu2004 | default([]) if foreman_enable_atix_ubuntu2004 | bool else [] ) |
+  union( foreman_products_atix_ubuntu2204 | default([]) if foreman_enable_atix_ubuntu2204 | bool else [] ) |
+  union( foreman_products_atix_ubuntu2404 | default([]) if foreman_enable_atix_ubuntu2404 | bool else [] )
+  }}"
+
+foreman_content_views_atix_ubuntu_main: []
+foreman_content_views_atix_ubuntu: "{{ ( foreman_content_views_atix_ubuntu_main | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
+  union( foreman_content_views_atix_ubuntu2004 | default([]) if foreman_enable_atix_ubuntu2004 | bool else [] ) |
+  union( foreman_content_views_atix_ubuntu2204 | default([]) if foreman_enable_atix_ubuntu2204 | bool else [] ) |
+  union( foreman_content_views_atix_ubuntu2404 | default([]) if foreman_enable_atix_ubuntu2404 | bool else [] )
+  }}"
+
+foreman_operatingsystems_atix_ubuntu_main: []
+foreman_operatingsystems_atix_ubuntu: "{{ ( foreman_operatingsystems_atix_ubuntu_main | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
+  union( foreman_operatingsystems_atix_ubuntu2004 | default([]) if foreman_enable_atix_ubuntu2004 | bool else [] ) |
+  union( foreman_operatingsystems_atix_ubuntu2204 | default([]) if foreman_enable_atix_ubuntu2204 | bool else [] ) |
+  union( foreman_operatingsystems_atix_ubuntu2404 | default([]) if foreman_enable_atix_ubuntu2404 | bool else [] )
+  }}"
+
+foreman_installation_media_atix_ubuntu_main: []
+foreman_installation_media_atix_ubuntu: "{{ ( foreman_installation_media_atix_ubuntu_main | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
+  union( foreman_installation_media_atix_ubuntu2004 | default([]) if foreman_enable_atix_ubuntu2004 | bool else [] ) |
+  union( foreman_installation_media_atix_ubuntu2204 | default([]) if foreman_enable_atix_ubuntu2204 | bool else [] ) |
+  union( foreman_installation_media_atix_ubuntu2404 | default([]) if foreman_enable_atix_ubuntu2404 | bool else [] )
+  }}"
+
+foreman_activation_keys_atix_ubuntu_main: []
+foreman_activation_keys_atix_ubuntu: "{{ ( foreman_activation_keys_atix_ubuntu_main | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
+  union( foreman_installation_media_atix_ubuntu2004 | default([]) if foreman_enable_atix_ubuntu2004 | bool else [] ) |
+  union( foreman_installation_media_atix_ubuntu2204 | default([]) if foreman_enable_atix_ubuntu2204 | bool else [] ) |
+  union( foreman_installation_media_atix_ubuntu2404 | default([]) if foreman_enable_atix_ubuntu2404 | bool else [] )
+  }}"
+
+foreman_sync_plan_products_atix_ubuntu_main: []
+foreman_sync_plan_products_atix_ubuntu: "{{ ( foreman_sync_plan_products_atix_ubuntu_main | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
+  union( foreman_installation_media_atix_ubuntu2004 | default([]) if foreman_enable_atix_ubuntu2004 | bool else [] ) |
+  union( foreman_installation_media_atix_ubuntu2204 | default([]) if foreman_enable_atix_ubuntu2204 | bool else [] ) |
+  union( foreman_installation_media_atix_ubuntu2404 | default([]) if foreman_enable_atix_ubuntu2404 | bool else [] )
+  }}"
+

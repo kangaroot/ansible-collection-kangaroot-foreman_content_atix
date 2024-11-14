@@ -1,0 +1,26 @@
+---
+
+#######################################
+### CONTENT VIEW DEFAULTS
+#######################################
+
+# foreman_cv_allow_promote: false
+# foreman_ccv_allow_promote: true
+# foreman_ccv_auto_publish: true
+
+### ATIX
+
+# foreman_cv_allow_promote_atix: "{{ foreman_cv_allow_promote | bool }}"
+
+# foreman_cv_allow_promote_atix_debian: "{{ foreman_cv_allow_promote_atix | bool }}"
+# foreman_cv_allow_promote_atix_debian11: "{{ foreman_cv_allow_promote_atix_debian | bool }}"
+# foreman_cv_allow_promote_atix_debian12: "{{ foreman_cv_allow_promote_atix_debian | bool }}"
+
+# foreman_cv_allow_promote_atix_ubuntu: "{{ foreman_cv_allow_promote_atix | bool }}"
+# foreman_cv_allow_promote_atix_ubuntu2004: "{{ foreman_cv_allow_promote_atix_ubuntu | bool }}"
+# foreman_cv_allow_promote_atix_ubuntu2204: "{{ foreman_cv_allow_promote_atix_ubuntu | bool }}"
+# foreman_cv_allow_promote_atix_ubuntu2404: "{{ foreman_cv_allow_promote_atix_ubuntu | bool }}"
+
+# foreman_cv_allow_promote_atix_sles: "{{ foreman_cv_allow_promote_atix | bool }}"
+# foreman_cv_allow_promote_atix_sles12: "{{ foreman_cv_allow_promote_atix_sles | bool }}"
+# foreman_cv_allow_promote_atix_sles15: "{{ foreman_cv_allow_promote_atix_sles | bool }}"
