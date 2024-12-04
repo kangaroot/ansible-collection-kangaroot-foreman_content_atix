@@ -20,7 +20,3 @@
 # foreman_cv_allow_promote_atix_ubuntu2004: "{{ foreman_cv_allow_promote_atix_ubuntu | bool }}"
 # foreman_cv_allow_promote_atix_ubuntu2204: "{{ foreman_cv_allow_promote_atix_ubuntu | bool }}"
 # foreman_cv_allow_promote_atix_ubuntu2404: "{{ foreman_cv_allow_promote_atix_ubuntu | bool }}"
-
-# foreman_cv_allow_promote_atix_sles: "{{ foreman_cv_allow_promote_atix | bool }}"
-# foreman_cv_allow_promote_atix_sles12: "{{ foreman_cv_allow_promote_atix_sles | bool }}"
-# foreman_cv_allow_promote_atix_sles15: "{{ foreman_cv_allow_promote_atix_sles | bool }}"

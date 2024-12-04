@@ -19,10 +19,6 @@ foreman_repo_baseurl_atix_ubuntu2004: "{{ foreman_repo_baseurl_atix_ubuntu }}"
 foreman_repo_baseurl_atix_ubuntu2204: "{{ foreman_repo_baseurl_atix_ubuntu }}"
 foreman_repo_baseurl_atix_ubuntu2404: "{{ foreman_repo_baseurl_atix_ubuntu }}"
 
-foreman_repo_baseurl_atix_sles: "{{ foreman_repo_baseurl_atix }}"
-foreman_repo_baseurl_atix_sles12: "{{ foreman_repo_baseurl_atix_sles }}"
-foreman_repo_baseurl_atix_sles15: "{{ foreman_repo_baseurl_atix_sles }}"
-
 
 #######################################
 ### ENABLE VARS
@@ -41,10 +37,6 @@ foreman_enable_atix_ubuntu2004: "{{ foreman_enable_atix_ubuntu | bool }}"
 foreman_enable_atix_ubuntu2204: "{{ foreman_enable_atix_ubuntu | bool }}"
 foreman_enable_atix_ubuntu2404: "{{ foreman_enable_atix_ubuntu | bool }}"
 
-foreman_enable_atix_sles: false
-foreman_enable_atix_sles12: "{{ foreman_enable_atix_sles | bool }}"
-foreman_enable_atix_sles15: "{{ foreman_enable_atix_sles | bool }}"
-
 
 #######################################
 ### PRODUCT DEFAULTS
@@ -62,23 +54,18 @@ foreman_products_defaults_deb_architectures_atix: "{{ foreman_products_defaults_
 
 foreman_products_defaults_download_policy_atix_debian: "{{ foreman_products_defaults_download_policy_atix }}"
 foreman_products_defaults_download_policy_atix_ubuntu: "{{ foreman_products_defaults_download_policy_atix }}"
-foreman_products_defaults_download_policy_atix_sles: "{{ foreman_products_defaults_download_policy_atix }}"
 
 foreman_products_defaults_mirroring_policy_atix_debian: "{{ foreman_products_defaults_mirroring_policy_atix }}"
 foreman_products_defaults_mirroring_policy_atix_ubuntu: "{{ foreman_products_defaults_mirroring_policy_atix }}"
-foreman_products_defaults_mirroring_policy_atix_sles: "{{ foreman_products_defaults_mirroring_policy_atix }}"
 
 foreman_products_defaults_verify_ssl_on_sync_atix_debian: "{{ foreman_products_defaults_verify_ssl_on_sync_atix | bool }}"
 foreman_products_defaults_verify_ssl_on_sync_atix_ubuntu: "{{ foreman_products_defaults_verify_ssl_on_sync_atix | bool }}"
-foreman_products_defaults_verify_ssl_on_sync_atix_sles: "{{ foreman_products_defaults_verify_ssl_on_sync_atix | bool }}"
 
 foreman_products_defaults_http_proxy_policy_atix_debian: "{{ foreman_products_defaults_http_proxy_policy_atix }}"
 foreman_products_defaults_http_proxy_policy_atix_ubuntu: "{{ foreman_products_defaults_http_proxy_policy_atix }}"
-foreman_products_defaults_http_proxy_policy_atix_sles: "{{ foreman_products_defaults_http_proxy_policy_atix }}"
 
 foreman_products_defaults_unprotected_atix_debian: "{{ foreman_products_defaults_unprotected_atix | bool }}"
 foreman_products_defaults_unprotected_atix_ubuntu: "{{ foreman_products_defaults_unprotected_atix | bool }}"
-foreman_products_defaults_unprotected_atix_sles: "{{ foreman_products_defaults_unprotected_atix | bool }}"
 
 foreman_products_defaults_deb_components_atix_debian: "{{ foreman_products_defaults_deb_components_atix }}"
 foreman_products_defaults_deb_components_atix_ubuntu: "{{ foreman_products_defaults_deb_components_atix }}"
@@ -104,10 +91,6 @@ foreman_organization_atix_ubuntu2004: "{{ foreman_organization_atix_ubuntu }}"
 foreman_organization_atix_ubuntu2204: "{{ foreman_organization_atix_ubuntu }}"
 foreman_organization_atix_ubuntu2404: "{{ foreman_organization_atix_ubuntu }}"
 
-foreman_organization_atix_sles: "{{ foreman_organization_atix }}"
-foreman_organization_atix_sles12: "{{ foreman_organization_atix_sles }}"
-foreman_organization_atix_sles15: "{{ foreman_organization_atix_sles }}"
-
 
 #######################################
 ### CONTENT VIEW DEFAULTS
@@ -126,10 +109,6 @@ foreman_cv_allow_promote_atix_ubuntu2004: "{{ foreman_cv_allow_promote_atix_ubun
 foreman_cv_allow_promote_atix_ubuntu2204: "{{ foreman_cv_allow_promote_atix_ubuntu | bool }}"
 foreman_cv_allow_promote_atix_ubuntu2404: "{{ foreman_cv_allow_promote_atix_ubuntu | bool }}"
 
-foreman_cv_allow_promote_atix_sles: "{{ foreman_cv_allow_promote_atix | bool }}"
-foreman_cv_allow_promote_atix_sles12: "{{ foreman_cv_allow_promote_atix_sles | bool }}"
-foreman_cv_allow_promote_atix_sles15: "{{ foreman_cv_allow_promote_atix_sles | bool }}"
-
 
 #######################################
 ### CONTENT
@@ -143,43 +122,37 @@ foreman_content_credentials_atix_main:
 
 foreman_content_credentials_atix: "{{ ( foreman_content_credentials_atix_main | default([]) if foreman_enable_atix | bool else [] ) |
   union( foreman_content_credentials_atix_debian | default([]) if foreman_enable_atix_debian | bool else [] ) |
-  union( foreman_content_credentials_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
-  union( foreman_content_credentials_atix_sles | default([]) if foreman_enable_atix_sles | bool else [] )
+  union( foreman_content_credentials_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] )
   }}"
 
 foreman_products_atix_main: []
 foreman_products_atix: "{{ ( foreman_products_atix_main | default([]) if foreman_enable_atix | bool else [] ) |
   union( foreman_products_atix_debian | default([]) if foreman_enable_atix_debian | bool else [] ) |
-  union( foreman_products_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
-  union( foreman_products_atix_sles | default([]) if foreman_enable_atix_sles | bool else [] )
+  union( foreman_products_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] )
   }}"
 
 foreman_content_views_atix_main: []
 foreman_content_views_atix: "{{ ( foreman_content_views_atix_main | default([]) if foreman_enable_atix | bool else [] ) |
   union( foreman_content_views_atix_debian | default([]) if foreman_enable_atix_debian | bool else [] ) |
-  union( foreman_content_views_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
-  union( foreman_content_views_atix_sles | default([]) if foreman_enable_atix_sles | bool else [] )
+  union( foreman_content_views_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] )
   }}"
 
 foreman_operatingsystems_atix_main: []
 foreman_operatingsystems_atix: "{{ ( foreman_operatingsystems_atix_main | default([]) if foreman_enable_atix | bool else [] ) |
   union( foreman_operatingsystems_atix_debian | default([]) if foreman_enable_atix_debian | bool else [] ) |
-  union( foreman_operatingsystems_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
-  union( foreman_operatingsystems_atix_sles | default([]) if foreman_enable_atix_sles | bool else [] )
+  union( foreman_operatingsystems_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] )
   }}"
 
 foreman_installation_media_atix_main: []
 foreman_installation_media_atix: "{{ ( foreman_installation_media_atix_main | default([]) if foreman_enable_atix | bool else [] ) |
   union( foreman_installation_media_atix_debian | default([]) if foreman_enable_atix_debian | bool else [] ) |
-  union( foreman_installation_media_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
-  union( foreman_installation_media_atix_sles | default([]) if foreman_enable_atix_sles | bool else [] )
+  union( foreman_installation_media_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] )
   }}"
 
 foreman_activation_keys_atix_main: []
 foreman_activation_keys_atix: "{{ ( foreman_activation_keys_atix_main | default([]) if foreman_enable_atix | bool else [] ) |
   union( foreman_installation_media_atix_debian | default([]) if foreman_enable_atix_debian | bool else [] ) |
-  union( foreman_installation_media_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
-  union( foreman_installation_media_atix_sles | default([]) if foreman_enable_atix_sles | bool else [] )
+  union( foreman_installation_media_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] )
   }}"
 
 foreman_sync_plan_products_atix_main:
@@ -187,7 +160,6 @@ foreman_sync_plan_products_atix_main:
 
 foreman_sync_plan_products_atix: "{{ ( foreman_sync_plan_products_atix_main | default([]) if foreman_enable_atix | bool else [] ) |
   union( foreman_installation_media_atix_debian | default([]) if foreman_enable_atix_debian | bool else [] ) |
-  union( foreman_installation_media_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] ) |
-  union( foreman_installation_media_atix_sles | default([]) if foreman_enable_atix_sles | bool else [] )
+  union( foreman_installation_media_atix_ubuntu | default([]) if foreman_enable_atix_ubuntu | bool else [] )
   }}"
 
