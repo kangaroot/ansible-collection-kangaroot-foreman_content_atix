@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  role_name: foreman_content_atix
+  author: "Sven Meeus <sven.meeus@kangaroot.net>"
+  description: "Role for configuring ATIX repositories in a Foreman/Katello installation"
+  license: GPL-3.0-or-later
+  min_ansible_version: "2.13"
+  platforms:
+    - name: Debian
+      versions:
+        - bullseye
+        - bookworm
+    - name: Ubuntu
+      versions:
+        - jammy
+        - focal
+        - noble
+  galaxy_tags:
+    - foreman
+    - katello
+    - satellite
+    - atix
+dependencies: []
